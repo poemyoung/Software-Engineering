@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>查询</title>
+    <script src="jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+        <input id='input' type="text" name="doctorName" />
+        <input type="button" value="提交" onclick="sub()">
+    <script>
+        //改成自己的服务器端口，apache服务器默认端口为8080.
+        var address = 'http://localhost:8000/';
+        function sub(){
+        var a = document.getElementById('input').value;
+        $.ajax({
+            url: address + "Search/search_medicine_company.php",
+            type:"get",
+            timeout:10000,
+            data:{medicineCom:a},
+            dataType:'JSON',
+            success:function(data,status){
+                console.log(data);
+            },
+            error:function(e,status){
+                console.log(e);
+            }
+        })
+        }
+    </script>
+
+</body>
+
+</html>
