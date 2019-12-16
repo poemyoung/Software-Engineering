@@ -5,7 +5,7 @@
  header("Access-Control-Allow-Origin:*");
  header('Access-Control-Allow-Methods:POST');
  header('Access-Control-Allow-Headers:x-requested-with, content-type');
- $input = $_GET["diseasePart"];
+ $input = $_GET["data"];
  $disease_part_get = new DiseasePartclass($input);
  $res = $disease_part_get->get_result();
  try{

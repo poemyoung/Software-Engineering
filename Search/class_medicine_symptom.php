@@ -1,6 +1,6 @@
 <?php
 //药品名字查找类
-require 'mysql_connect.php';
+require_once 'mysql_connect.php';
 header("Content-Type:text/html;charset=utf-8");
 class MedicineSympclass{
     function __construct($medicine_symp)

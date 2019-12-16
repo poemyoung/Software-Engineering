@@ -5,9 +5,9 @@
     header("Access-Control-Allow-Origin:*");
     header('Access-Control-Allow-Methods:POST');
     header('Access-Control-Allow-Headers:x-requested-with, content-type');
-    $input = $_GET["hospitalName"];
- $hospital_name_get = new HospitalNameclass($input);
- $res = $hospital_name_get->get_result();
+     $input = $_GET["hospitalName"];
+    $hospital_name_get = new HospitalNameclass($input);
+    $res = $hospital_name_get->get_result();
  try{
     $i = 0;
     $results = array();
@@ -20,4 +20,3 @@
  }catch(Exception $e){
      echo $e->getMessage();
  }
- ?>

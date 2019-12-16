@@ -7,26 +7,28 @@
 </head>
 
 <body>
-        <input id='input' type="text" name="doctorName" />
-        <input type="button" value="提交" onclick="sub()">
+    <div id='show'></div>
+    <input id='input' type="text" name="hospitalName" />
+    <input type="button" value="提交" onclick="sub()">
     <script>
         //改成自己的服务器端口，apache服务器默认端口为8080.
-        var address = 'http://localhost:8000/';
-        function sub(){
-        var a = document.getElementById('input').value;
-        $.ajax({
-            url: address + "Search/search_medicine_company.php",
-            type:"get",
-            timeout:10000,
-            data:{medicineCom:a},
-            dataType:'JSON',
-            success:function(data,status){
-                console.log(data);
-            },
-            error:function(e,status){
-                console.log(e);
-            }
-        })
+        var address = 'http://localhost:80/';
+        function sub() {
+            var a = document.getElementById('input').value;
+            $.ajax({
+                url: address + "Search/search_article_all.php",
+                type: "get",
+                timeout: 1000000,
+                dataType: 'JSON',
+                data: { articleAll: a },
+                success: function (data, status) {
+                    console.log(data);
+                },
+                error: function (e, status) {
+                    var a = document.getElementById("show");
+                    show.innerHTML = e.responseText;
+                }
+            })
         }
     </script>
 

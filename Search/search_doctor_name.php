@@ -5,7 +5,7 @@
  header("Access-Control-Allow-Origin:*");
  header('Access-Control-Allow-Methods:POST');
  header('Access-Control-Allow-Headers:x-requested-with, content-type');
-  $input = $_GET["doctorName"];
+  $input = $_GET["data"];
  $doctor_name_get = new DoctorNameclass($input);
  $res = $doctor_name_get->get_result();
  try{
