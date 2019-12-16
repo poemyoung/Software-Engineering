@@ -5,7 +5,7 @@
  header("Access-Control-Allow-Origin:*");
  header('Access-Control-Allow-Methods:POST');
  header('Access-Control-Allow-Headers:x-requested-with, content-type');
-  $input = $_GET["medicineCom"];
+  $input = $_GET["data"];
  $medicine_com_get = new MedicineComclass($input);
  $res = $medicine_com_get->get_result();
  try{

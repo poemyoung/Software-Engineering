@@ -1,6 +1,6 @@
 <?php
 //疾病症状查找类
-require 'mysql_connect.php';
+require_once 'mysql_connect.php';
 header("Content-Type:text/html;charset=utf-8");
 class DiseaseSymptomclass{
     function __construct($disease_symptom)

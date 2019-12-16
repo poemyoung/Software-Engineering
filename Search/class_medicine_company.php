@@ -1,6 +1,6 @@
 <?php
 //药品生产厂家查找类
-require 'mysql_connect.php';
+require_once 'mysql_connect.php';
 header("Content-Type:text/html;charset=utf-8");
 class MedicineComclass{
     function __construct($medicine_com)

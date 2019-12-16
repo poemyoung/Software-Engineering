@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>查询</title>
+    <script src="jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div id='show'></div>
+    <input id='input' type="text" name="doctorName" />
+    <input type="button" value="提交" onclick="sub()">
+    <script>
+        //改成自己的服务器端口，apache服务器默认端口为8080.
+        var address = 'http://localhost:8000/';
+        function sub() {
+            var a = document.getElementById('input').value;
+            $.ajax({
+                url: address + "Search/get_national_area.php",
+                type: "get",
+                timeout: 1000000,
+                dataType: 'JSON',
+               // data: {data:{'area': ['全国'], 'level': '全部'}},
+                success: function (data, status) {
+                    res = [];
+                    j = 0;
+                    var c = [];
+                    var b = {};
+                    for( i = 0;i<data.length;i++){
+                        var d = {};
+                        d.value = data[i].cityName;
+                        d.label = data[i].cityName;
+                        c.push(d);
+                        
+                        if(i==data.length-1){
+                            b.value = data[i].provinceName;
+                             b.label = data[i].provinceName;
+                             if(d.value != '市辖区'){
+                                b.children = c;
+                        }
+                         res.push(b);
+                         b = {};
+                         c=[];
+                         break;
+                        };
+                        if(data[i].provinceName!=data[i+1].provinceName){
+                            b.value = data[i].provinceName;
+                             b.label = data[i].provinceName;
+                             if(d.value != '市辖区'){
+                                b.children = c;
+                        }
+                         res.push(b);
+                         b = {};
+                         c=[];
+                        }
+                    }
+                    console.log(res);
+                },
+                error: function (e, status) {
+                    var a = document.getElementById("show");
+                    show.innerHTML = e.responseText;
+                }
+
+            })
+        }
+    </script>
+
+</body>
+
+</html>

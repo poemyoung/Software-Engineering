@@ -1,6 +1,6 @@
 <?php
 //医生姓名查找类
-require 'mysql_connect.php';
+require_once 'mysql_connect.php';
 header("Content-Type: text/html;charset=utf-8");
 class DoctorNameclass{
     function __construct($docotr_name)
@@ -13,8 +13,17 @@ class DoctorNameclass{
         $conn = $conn_obj->to_connect();
         mysqli_query($conn,"SET NAMES 'utf8'");
         $this->content = mysqli_real_escape_string($conn,$this->content);
+        $equal = 'true';
+        $sql_equal = "SELECT *,'".$equal."' AS equal "."FROM doctor WHERE name='".$this->content."'";
+        $res_equal = mysqli_query($conn,$sql_equal);
+        if(mysqli_num_rows($res_equal) == 0){
+            $equal = 'false';
+        }else{
+            return $res_equal;
+        }
+
         if(!preg_match("/[a-z|A-Z]+/",$this->content)){
-        $sql = "SELECT * FROM doctor WHERE name LIKE '%".$this->content."%'";
+        $sql = "SELECT *,'".$equal."' AS equal "."FROM doctor WHERE name LIKE '%".$this->content."%'";
         $res = mysqli_query($conn,$sql);
          return $res;       
         }
@@ -28,7 +37,7 @@ class DoctorNameclass{
                $find_sent = $find_sent."%".$value;
             }
             $this->content = $find_sent."%";
-            $sql = "SELECT * FROM doctor WHERE pinying LIKE '".$this->content."'";
+            $sql = "SELECT *,'".$equal."' AS equal "."FROM doctor WHERE pinying LIKE '".$this->content."'";
             $res = mysqli_query($conn,$sql);
             return $res;       
         }

@@ -1,6 +1,6 @@
 <?php
 //医院地区查找类
-require 'mysql_connect.php';
+require_once 'mysql_connect.php';
 header("Content-Type: text/html;charset=utf-8");
 class HospitalAreaclass{
     function __construct($hospital_area)
